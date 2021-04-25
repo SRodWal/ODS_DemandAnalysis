@@ -6,13 +6,13 @@ Data Source : https://www.ods.org.hn
 
 ----------- Current state -------------
 
-1. Downloading data module:  (scraper.py)
+1. Downloading data module: ✓ (scrapdocs.py)
 
-        a. Inputs: website with the excel (weekly) & pdf (daily) files.
+        a. Inputs: File type, list of URLs, directories (browser, download, database)
 
-        b. Outputs: Excel file in a desired directory.
+        b. Outputs: A set of files in the database directory.
 
-        c. Past problems: N/A
+        c. Past problems: Error when reading downloaded file and when a file is already on database. Solution -> Exeptions, and delete duplicated files.
 
         d. Possible Upgrades: N/A.
           Comments: Webscraping.
