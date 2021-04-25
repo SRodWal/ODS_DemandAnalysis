@@ -3,7 +3,7 @@ Codes for Hondura's power grid demand analysis. This codes aims to study the cha
 
 About the Pre-dispatch (24Hrs cycle - Daily reports): 
 
-I. The pre-dispatch reports accounts for the forcasted energy production for each of hondrura's power providers. The generation report is devided into type of energies: Hydroelectric, renewable (Solar, Wind, Geothermic, Tidal), thermoelectric plants and others (6 unidentified sources. 3 unites @ CJN, 1 unite @ CRL, 2 unites @ RLN). This last concept has a defined minimun generation (180 Mw @ CJNs and 10 Mw for the others), Hydroelectric stations have a defined energy reserve "Asignacion de reserva de regulacion secundaria de frecuencias". 
+I. The pre-dispatch reports accounts for the forcasted energy production for each of hondrura's power providers. The generation report is devided into type of energies: Hydroelectric, renewable (Solar, Wind, Geothermic, Tidal), thermoelectric plants and others (6 unidentified sources. 3 unites @ CJN, 1 unite @ CRL, 2 unites @ RLN). This last concept has a defined minimun generation (180 Mw @ CJNs and 10 Mw for the others). Hydroelectric stations have a defined energy reserve "Asignacion de reserva de regulacion secundaria de frecuencias". 
 
 II. Demand, Deficit and "intentional" Leaks: Total national grid demand by hour. Real time power plants market share.
 
