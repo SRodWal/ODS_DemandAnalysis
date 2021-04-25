@@ -1,4 +1,4 @@
-# ODS Supply and Demand Analysis
+# ODS Supply and Demand Analysis (In Progress)
 Codes for Hondura's power grid demand analysis. This codes aims to study the changes in marginal prices due to energy provider changes on supply. Updates the weekly and daily energy flows.
 
 Data Source : https://www.ods.org.hn
