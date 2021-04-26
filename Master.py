@@ -32,7 +32,7 @@ tabs = pd.ExcelFile("Data/Pre-dispatch/"+filenames[0]).sheet_names
 df_tab  = []
 for tab in tabs:  
     dfs = pd.DataFrame()
-    for file in filenames:
+    for file in filenames[0:50]:
         df = pd.read_excel("Data/Pre-dispatch/"+file, sheet_name = tab, header = [2])
         df.drop(df.columns[0], axis=1, inplace = True)
         dfs = dfs.append(df, ignore_index = True)
@@ -76,7 +76,7 @@ for n in range(0,len(df_tab[0])-1):
 ###### Ordenar por series de tiempo ######
 emptydf = pd.DataFrame()
 weekvec = [emptydf for i in range(0,7)]
-weeklyvec = [emptydf for i in range(0,53)]
+weeklyvec = [emptydf for i in range(0,54)]
 dayvec = [emptydf for i in range(0,31)]
 monthvec = [emptydf for i in range(0,12)]
 hourvec = [emptydf for i in range(0,24)]
@@ -86,8 +86,20 @@ for t,i in zip(timevec, range(0,len(timevec))):
         dayvec[t.day-1] = dayvec[t.day-1].append(df_tab[0].loc[i])
         monthvec[t.month-1] = monthvec[t.month-1].append(df_tab[0].loc[i])
         hourvec[t.hour] = hourvec[t.hour].append(df_tab[0].loc[i])
-weeklis = [df.describe() for df in weekvec]
-weeklylis = [df.describe() for df in weeklyvec]
-daylis = [df.describe() for df in dayvec]
-monthlis = [df.describe() for df in monthvec]
-hourlis = [df.describe() for df in hourvec]
+        
+weeklis = [df.describe() for df in weekvec if not(df.empty)]
+weeklylis = [df.describe() for df in weeklyvec if not(df.empty)]
+daylis = [df.describe() for df in dayvec if not(df.empty)]
+monthlis = [df.describe() for df in monthvec if not(df.empty)]
+hourlis = [df.describe() for df in hourvec if not(df.empty)]
+stats = ["mean","std",["min","max"]]  
+statdat = [[] for i in range(0,len(stats))]
+for s, dat in zip(stats, statdat):
+    dat.append([w.loc[s] for w in weeklis])
+    dat.append([w.loc[s] for w in weeklylis])
+    dat.append([w.loc[s] for w in daylis])
+    dat.append([w.loc[s] for w in monthlis])
+    dat.append([w.loc[s] for w in hourlis])
+    
+
+
