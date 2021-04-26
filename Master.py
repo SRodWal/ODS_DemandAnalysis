@@ -65,10 +65,10 @@ for i in range(0,len(Coll[0])):
 
 
 ##### Crear vector de tiempo ##########
-yr = filenames[0][21:-9]
-month = [f for f in range(1,13) if filenames[0][18:-11] in monthNum(f)]
-day = filenames[0][25:-5]
-t0 = datetime(yr, month, day)
+yr = int("20"+filenames[0][21:-9])
+month = int([f for f in range(1,13) if filenames[0][18:-11] in monthNum(f)][0])
+day = int(filenames[0][25:-5])
+t0 = datetime.datetime(yr, month, day)
 timevec = [t0]
-for n in range(0,len(df_tab[0])):
+for n in range(0,len(df_tab[0])-1):
     timevec.append(timevec[-1]+datetime.timedelta(hours = 1))
