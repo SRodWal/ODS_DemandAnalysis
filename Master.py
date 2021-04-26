@@ -32,7 +32,7 @@ tabs = pd.ExcelFile("Data/Pre-dispatch/"+filenames[0]).sheet_names
 df_tab  = []
 for tab in tabs:  
     dfs = pd.DataFrame()
-    for file in filenames[0:50]:
+    for file in filenames:
         df = pd.read_excel("Data/Pre-dispatch/"+file, sheet_name = tab, header = [2])
         df.drop(df.columns[0], axis=1, inplace = True)
         dfs = dfs.append(df, ignore_index = True)
