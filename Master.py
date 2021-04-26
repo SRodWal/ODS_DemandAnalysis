@@ -32,7 +32,7 @@ tabs = pd.ExcelFile("Data/Pre-dispatch/"+filenames[0]).sheet_names
 df_tab  = []
 for tab in tabs:  
     dfs = pd.DataFrame()
-    for file in filenames:
+    for file in filenames[0:2]:
         df = pd.read_excel("Data/Pre-dispatch/"+file, sheet_name = tab, header = [2])
         df.drop(df.columns[0], axis=1, inplace = True)
         dfs = dfs.append(df, ignore_index = True)
@@ -72,3 +72,15 @@ t0 = datetime.datetime(yr, month, day)
 timevec = [t0]
 for n in range(0,len(df_tab[0])-1):
     timevec.append(timevec[-1]+datetime.timedelta(hours = 1))
+    
+###### Ordenar por series de tiempo ######
+
+weekvec = [[] for i in range(0,7)]
+dayvec = [[] for i in range(0,31)]
+monthvec = [[] for i in range(0,12)]
+hourvec = [[] for i in range(0,24)]
+for t,i in zip(timevec, range(0,len(timevec))):
+        weekvec[t.weekday()-1].append(df_tab[0].loc[i])
+        dayvec[t.day-1].append(df_tab[0].loc[i])
+        monthvec[t.month-1].append(df_tab[0].loc[i])
+        hourvec[t.hour].append(df_tab[0].loc[i])
