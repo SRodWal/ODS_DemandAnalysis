@@ -32,7 +32,7 @@ tabs = pd.ExcelFile("Data/Pre-dispatch/"+filenames[0]).sheet_names
 df_tab  = []
 for tab in tabs:  
     dfs = pd.DataFrame()
-    for file in filenames:
+    for file in filenames[0:10]:
         df = pd.read_excel("Data/Pre-dispatch/"+file, sheet_name = tab, header = [2])
         df.drop(df.columns[0], axis=1, inplace = True)
         dfs = dfs.append(df, ignore_index = True)
@@ -75,10 +75,11 @@ for n in range(0,len(df_tab[0])-1):
     
 ###### Ordenar por series de tiempo ######
 emptydf = pd.DataFrame()
-statsdata = [[] for i in index]
+statsdata = [] 
+## Data in statdata is stored as statsdata["Type of energy"]["data type (mean, stdm min/max)"]["Data frequency type"]
 stats = ["mean","std",["min","max"]]  
     
-for tab, ss in zip(index, statsdata):
+for tab in index:
     weekvec = [emptydf for i in range(0,7)]
     weeklyvec = [emptydf for i in range(0,54)]
     dayvec = [emptydf for i in range(0,31)]
@@ -94,8 +95,8 @@ for tab, ss in zip(index, statsdata):
     poollis = [[df.describe() for df in dat if not(df.empty)] for dat in pool]    
     statdat = [[] for i in range(0,len(stats))]
     for s, dat in zip(stats, statdat):
-        [dat.append([w.loc[s] for w in lis]) for lis in poollis]
-    statsdata.append(statdat)    
+        [dat.append([df.loc[s] for df in lis]) for lis in poollis]
+    statsdata.append(statdat)
     
 
 
