@@ -76,11 +76,13 @@ for n in range(0,len(df_tab[0])-1):
 ###### Ordenar por series de tiempo ######
 
 weekvec = [[] for i in range(0,7)]
+weeklyvec = [[] for i in range(0,53)]
 dayvec = [[] for i in range(0,31)]
 monthvec = [[] for i in range(0,12)]
 hourvec = [[] for i in range(0,24)]
 for t,i in zip(timevec, range(0,len(timevec))):
         weekvec[t.weekday()-1].append(df_tab[0].loc[i])
+        weeklyvec[t.isocalendar()[1]].append(df_tab[0].loc[i])
         dayvec[t.day-1].append(df_tab[0].loc[i])
         monthvec[t.month-1].append(df_tab[0].loc[i])
         hourvec[t.hour].append(df_tab[0].loc[i])
