@@ -3,14 +3,15 @@ from urllib.request import urlopen
 from time import sleep
 import re, os, http.client
 import webbrowser
-
+"""
 ODSurl = [
           "https://www.ods.org.hn/index.php/informes/prog-de-la-operacion/predespacho-final/predespacho-final-2021/enero-predespachofinal-21",
           "https://www.ods.org.hn/index.php/informes/prog-de-la-operacion/predespacho-final/predespacho-final-2021/febrero-predespachofinal-21",
           "https://www.ods.org.hn/index.php/informes/prog-de-la-operacion/predespacho-final/predespacho-final-2021/marzo-predespachofinal-21",
           "https://www.ods.org.hn/index.php/informes/prog-de-la-operacion/predespacho-final/predespacho-final-2021/abril-predespachofinal-21",
           ]
-
+"""
+ODSurl = ["https://www.ods.org.hn/index.php/informes/prog-de-la-operacion/predespacho-final/predespacho-final-2021/abril-predespachofinal-21"]
 #List of webpages to search
 Meses = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"]
 #This will order the month list to correspond the ODS links.
@@ -36,7 +37,7 @@ http.client.HTTPConnection._http_vsn_str = 'HTTP/1.0'
 headers = {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
     }
-for url, mes in zip(ODSurl[0:1],meses[0:1]):
+for url, mes in zip(ODSurl,meses):
     page = urlopen(url)
     html_bytes = page.read()
     html = html_bytes.decode("utf-8")
@@ -45,7 +46,7 @@ for url, mes in zip(ODSurl[0:1],meses[0:1]):
     webbrowser.register("opera", None,webbrowser.BackgroundBrowser(brow))
     op  =  webbrowser.get("opera")
     print("Iniciando mes de "+mes+". Total de archivos: "+str(len(data)))
-    for l in data[0:1]:
+    for l in data:
         date = l[len(l)-11:-5]
         day= date[0:2]
         yr = date[4:6]
