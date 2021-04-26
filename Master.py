@@ -43,7 +43,7 @@ for tab in tabs:
     df_tab.append(dfs)
  
 ######### Potencia total por typo de energia
-remove = [tabs[-1],tabs[3]]
+remove = [tabs[-1],tabs[3],tabs[4],tabs[-2]]
 pow_tab = tabs
 tabs = pd.ExcelFile("Data/Pre-dispatch/"+filenames[0]).sheet_names
 for r in remove:
@@ -57,6 +57,8 @@ for tab in index:
         tot.append(np.nansum(df_tab[tab].loc[i]))
     Coll.append(tot)
  
-
+Totalenergy = []
+for i in range(0,len(Coll[0])):
+    Totalenergy.append(np.nansum([f[i] for f in Coll] ))
 
 
