@@ -42,7 +42,7 @@ for tab in tabs:
         dfs[name] = df
     df_tab.append(dfs)
  
-######### Potencia total por typo de energia
+######### Potencia total (Totalenergy) y por typo de energia Colls
 remove = [tabs[-1],tabs[3],tabs[4],tabs[-2]]
 pow_tab = tabs
 tabs = pd.ExcelFile("Data/Pre-dispatch/"+filenames[0]).sheet_names
@@ -58,7 +58,17 @@ for tab in index:
     Coll.append(tot)
  
 Totalenergy = []
+CM = []
 for i in range(0,len(Coll[0])):
     Totalenergy.append(np.nansum([f[i] for f in Coll] ))
+    CM.append(np.nansum(np.nansum(df_tab[-1].loc[i])/len(df_tab[-1].loc[i])))
 
 
+##### Crear vector de tiempo ##########
+yr = filenames[0][21:-9]
+month = [f for f in range(1,13) if filenames[0][18:-11] in monthNum(f)]
+day = filenames[0][25:-5]
+t0 = datetime(yr, month, day)
+timevec = [t0]
+for n in range(0,len(df_tab[0])):
+    timevec.append(timevec[-1]+datetime.timedelta(hours = 1))
