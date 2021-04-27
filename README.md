@@ -45,4 +45,10 @@ Data Source : https://www.ods.org.hn
 
         b. Outputs: Graphs.
 
-        c. Comments: Map the regional producers to a node. Energy producers might affect the prices in adjacent nodes, the power cost increases by distance (Olancho has the higher pricing distribution)    
+        c. Comments: Map the regional producers to a node. Energy producers might affect the prices in adjacent nodes, the power cost increases by distance (Olancho has the higher pricing distribution)
+        
+        d. Marginal cost variations: 
+                ```math
+                MC = \Sum_{j}x_{j}p_{j} \quad : \quad x_{j} = \frac{E_{j}}{E_{T}}
+                ```
+        
