@@ -47,11 +47,8 @@ Data Source : https://www.ods.org.hn
 
         c. Comments: Map the regional producers to a node. Energy producers might affect the prices in adjacent nodes, the power cost increases by distance (Olancho has the higher pricing distribution)
         
-        d. Marginal cost variations: 
+        d. Marginal cost variations:  Weighted average with price and energy market share.
         
-                
-   $MC = \Sum_{j}x_{j}p_{j} \quad : \quad x_{j} = \frac{E_{j}}{E_{T}}$
-                <pre xml:lang="latex">\sqrt{2}</pre>
-                <img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">                
+                   Assumptions: New energy provider will sell at the local node price. New suppies will change the energy market share and                              therefore the local margial price. A MC assigned to a node could be influenced by near neighbors.
                 
         
