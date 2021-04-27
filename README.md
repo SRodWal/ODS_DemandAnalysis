@@ -50,7 +50,7 @@ Data Source : https://www.ods.org.hn
         d. Marginal cost variations: 
         
                 
-        $MC = \Sum_{j}x_{j}p_{j} \quad : \quad x_{j} = \frac{E_{j}}{E_{T}}$
+   $MC = \Sum_{j}x_{j}p_{j} \quad : \quad x_{j} = \frac{E_{j}}{E_{T}}$
                 <pre xml:lang="latex">\sqrt{2}</pre>
                 <img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">                
                 
