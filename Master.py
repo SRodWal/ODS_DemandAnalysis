@@ -11,6 +11,8 @@ import numpy as np
 import seaborn as sb
 import matplotlib.pyplot as plt
 from matplotlib.legend_handler import HandlerLine2D
+
+from playsound import playsound # Just for fun
 ####### Leer archivos en carpeta de datos
 folderdir = os.getcwd()+"\\Data\\Pre-dispatch"
 filetype = ".xlsx"
@@ -75,31 +77,29 @@ for n in range(0,len(df_tab[0])-1):
     
 ###### Ordenar por series de tiempo ######
 emptydf = pd.DataFrame()
-weekvec = [emptydf for i in range(0,7)]
-weeklyvec = [emptydf for i in range(0,54)]
-dayvec = [emptydf for i in range(0,31)]
-monthvec = [emptydf for i in range(0,12)]
-hourvec = [emptydf for i in range(0,24)]
-for t,i in zip(timevec, range(0,len(timevec))):
-        weekvec[t.weekday()-1] = weekvec[t.weekday()-1].append(df_tab[0].loc[i])
-        weeklyvec[t.isocalendar()[1]] = weeklyvec[t.isocalendar()[1]].append(df_tab[0].loc[i])
-        dayvec[t.day-1] = dayvec[t.day-1].append(df_tab[0].loc[i])
-        monthvec[t.month-1] = monthvec[t.month-1].append(df_tab[0].loc[i])
-        hourvec[t.hour] = hourvec[t.hour].append(df_tab[0].loc[i])
-        
-weeklis = [df.describe() for df in weekvec if not(df.empty)]
-weeklylis = [df.describe() for df in weeklyvec if not(df.empty)]
-daylis = [df.describe() for df in dayvec if not(df.empty)]
-monthlis = [df.describe() for df in monthvec if not(df.empty)]
-hourlis = [df.describe() for df in hourvec if not(df.empty)]
+statsdata = [] 
+## Data in statdata is stored as statsdata["Type of energy"]["data type (mean, stdm min/max)"]["Data frequency type"]
 stats = ["mean","std",["min","max"]]  
-statdat = [[] for i in range(0,len(stats))]
-for s, dat in zip(stats, statdat):
-    dat.append([w.loc[s] for w in weeklis])
-    dat.append([w.loc[s] for w in weeklylis])
-    dat.append([w.loc[s] for w in daylis])
-    dat.append([w.loc[s] for w in monthlis])
-    dat.append([w.loc[s] for w in hourlis])
     
-
+for tab in index:
+    weekvec = [emptydf for i in range(0,7)]
+    weeklyvec = [emptydf for i in range(0,54)]
+    dayvec = [emptydf for i in range(0,31)]
+    monthvec = [emptydf for i in range(0,12)]
+    hourvec = [emptydf for i in range(0,24)]
+    pool = [weekvec, weeklyvec,dayvec,monthvec,hourvec]
+    for t,i in zip(timevec, range(0,len(timevec))):
+            weekvec[t.weekday()-1] = weekvec[t.weekday()-1].append(df_tab[tab].loc[i])
+            weeklyvec[t.isocalendar()[1]] = weeklyvec[t.isocalendar()[1]].append(df_tab[tab].loc[i])
+            dayvec[t.day-1] = dayvec[t.day-1].append(df_tab[tab].loc[i])
+            monthvec[t.month-1] = monthvec[t.month-1].append(df_tab[tab].loc[i])
+            hourvec[t.hour] = hourvec[t.hour].append(df_tab[tab].loc[i])
+    poollis = [[df.describe() for df in dat if not(df.empty)] for dat in pool]    
+    statdat = [[] for i in range(0,len(stats))]
+    for s, dat in zip(stats, statdat):
+        [dat.append([df.loc[s] for df in lis]) for lis in poollis]
+    statsdata.append(statdat)
+    
+mando = "the_mandalorian_bell.mp3"
+playsound(mando)
 
