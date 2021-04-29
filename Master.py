@@ -45,7 +45,7 @@ for tab in tabs:
     df_tab.append(dfs)
  
 ######### Potencia total (Totalenergy) y por typo de energia Colls
-remove = [tabs[-1],tabs[3],tabs[4],tabs[-2]]
+remove = [tabs[0], tabs[1], tabs [2], tabs[3],tabs[4],tabs[5],tabs[-2]]
 pow_tab = tabs
 tabs = pd.ExcelFile("Data/Pre-dispatch/"+filenames[0]).sheet_names
 for r in remove:
@@ -100,6 +100,15 @@ for tab in index:
         [dat.append([df.loc[s] for df in lis]) for lis in poollis]
     statsdata.append(statdat)
     
-mando = "the_mandalorian_bell.mp3"
-playsound(mando)
-
+##### Costos marginales ######
+station = "GUA"
+location = [j for i,j in zip(statsdata[0][0][4][1].index, range(0,len(statsdata[0][0][4][1].index))) if station in i]
+stationdat = []
+for m in range(0,len(stats)):
+    misc2 = []
+    for t in range(0,len(pool)):
+        misc = []
+        for dat in range(0,len(statsdata[0][m][t])):
+            misc.append(statsdata[0][m][t][dat][location[0]])
+        misc2.append(misc)    
+    stationdat.append(misc2)        
