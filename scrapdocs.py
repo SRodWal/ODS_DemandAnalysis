@@ -11,7 +11,9 @@ ODSurl = [
           "https://www.ods.org.hn/index.php/informes/prog-de-la-operacion/predespacho-final/predespacho-final-2021/abril-predespachofinal-21",
           ]
 """
-ODSurl = ["https://www.ods.org.hn/index.php/informes/prog-de-la-operacion/predespacho-final/predespacho-final-2021/abril-predespachofinal-21"]
+ODSurl = ["https://www.ods.org.hn/index.php/informes/prog-de-la-operacion/predespacho-final/predespacho-final-2021/abril-predespachofinal-21",
+          "https://www.ods.org.hn/index.php/informes/prog-de-la-operacion/predespacho-final/predespacho-final-2021/mayo-predespachofinal-21",
+          ]
 #List of webpages to search
 Meses = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"]
 #This will order the month list to correspond the ODS links.
