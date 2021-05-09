@@ -41,3 +41,12 @@ dfs = dfs.set_index("DateTime")
 dfs["Hora"] = dfs.index.hour
 dfs["Dia - Mes"] = dfs.index.day
 dfs["Dia - Semana"] = dfs.index.weekday
+
+############ Data Visualization
+for n,i in zip(dfs.columns[0:10], range(0,len(dfs.columns[0:10]))):
+    plt.figure(num = i, figsize = (12,8))
+    sb.scatterplot(data = dfs, x = "Hora", y = n)
+    sb.boxplot(data = dfs, x = "Hora", y = n)
+    sb.relplot(data = dfs, x = "Hora",  y = n, kind = "line")
+    plt.show()    
+    
