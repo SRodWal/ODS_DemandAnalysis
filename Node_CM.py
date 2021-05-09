@@ -31,9 +31,13 @@ for n in names:
     df = pd.read_excel("Data/Pre-dispatch/"+n, sheet_name = tabs, header = [2])
     dfs = dfs.append(df, ignore_index=True)
 
-####### Time vector
+####### Time vector & time series properties to dataframe
 t0 = datetime.datetime(2020,10,13)
 timevec = [t0]
 [timevec.append(timevec[-1]+datetime.timedelta(hours = 1)) for i in range(1,len(dfs))]
-dfs["HORA"] = timevec
-dfs = dfs.set_index("HORA")
+dfs.drop("HORA", axis = 1, inplace = True)
+dfs["DateTime"] = timevec
+dfs = dfs.set_index("DateTime")
+dfs["Hora"] = dfs.index.hour
+dfs["Dia - Mes"] = dfs.index.day
+dfs["Dia - Semana"] = dfs.index.weekday
